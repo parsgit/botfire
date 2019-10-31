@@ -1,4 +1,15 @@
 <?php
+
+/********************************************
+*
+* telegram robot library
+* repository : https://github.com/parsgit/botfire
+*
+********************************************/
+
+
+
+
 namespace Models;
 use App\Web\File;
 
@@ -8,7 +19,7 @@ class BotFire{
   public static $server='https://api.telegram.org/bot';
 
 
-  public static $input,$json,$chat_id,$username,$first_name,$last_name,$full_name,$user_type,$title;
+  public static $input,$json,$chat_id,$username,$first_name,$last_name,$full_name,$user_type,$title,$isCallback;
 
   public static function setToken($token)
   {
@@ -43,23 +54,51 @@ class BotFire{
   public function initClientInfo()
   {
     if (isset(BotFire::$json->message)) {
+      BotFire::$isCallback=false;
       $message=BotFire::$json->message;
 
       BotFire::$get['text']=BotFire::checkIsset('text',$message);
 
       if (isset($message->chat)) {
         $chat=$message->chat;
+        BotFire::initChatUserInfo($chat);
+      }
 
-        BotFire::$chat_id=$chat->id;
-
-        BotFire::$username=BotFire::checkIsset('username',$chat);
-        BotFire::$user_type=BotFire::checkIsset('type',$chat);
-        BotFire::$username=BotFire::checkIsset('id',$chat);
-        BotFire::$first_name=BotFire::checkIsset('first_name',$chat);
-        BotFire::$last_name=BotFire::checkIsset('last_name',$chat);
-        BotFire::$title=BotFire::checkIsset('title',$chat);
+      if ($message->from) {
+        BotFire::$get['user']=$message->from;
       }
     }
+    else if( isset(BotFire::$json->callback_query) ) {
+      BotFire::$isCallback=true;
+      $query=BotFire::$json->callback_query;
+
+      BotFire::$get['text']=BotFire::checkIsset('text',$query->message);
+      BotFire::$get['data']=$query->data;
+
+      if (isset($query->message->chat)) {
+        $chat=$query->message->chat;
+        BotFire::initChatUserInfo($chat);
+      }
+      if ($query->from) {
+        BotFire::$get['user']=$query->from;
+      }
+
+    }
+  }
+
+  private function initChatUserInfo($ob)
+  {
+    BotFire::$chat_id=BotFire::checkIsset('id',$ob);
+
+    BotFire::$username=BotFire::checkIsset('username',$ob);
+    BotFire::$user_type=BotFire::checkIsset('type',$ob);
+    BotFire::$username=BotFire::checkIsset('id',$ob);
+    BotFire::$first_name=BotFire::checkIsset('first_name',$ob);
+    BotFire::$last_name=BotFire::checkIsset('last_name',$ob);
+    BotFire::$full_name=BotFire::$first_name.' '.BotFire::$last_name;
+
+    BotFire::$title=BotFire::checkIsset('title',$ob);
+
   }
 
   public static function get($name)
@@ -110,6 +149,19 @@ class BotFireSendMessage
      echo json_encode($this->params);
 
      return $this;
+  }
+
+  /**
+  * Use this method to get information about a member of a chat.
+  * docs : https://core.telegram.org/bots/api#getchatmember
+  * method : getChatMember
+  */
+  public function getChatMember($user_id)
+  {
+    $this->params['user_id']=$user_id;
+    $this->method='getChatMember';
+
+    return $this;
   }
 
   /**
@@ -181,6 +233,11 @@ class BotFireSendMessage
     return Request::api($url,$this->params,true);
   }
 
+  public function sendAndGetJson()
+  {
+    return json_decode($this->send());
+  }
+
 
 }
 
@@ -225,6 +282,12 @@ class keyboard
     return $this;
   }
 
+  public function btn($name,$callback_data)
+  {
+    $this->btns[]=['text'=>$name,'callback_data'=>$callback_data];
+    return $this;
+  }
+
   public function get()
   {
     if ($this->getType()=='inline_keyboard') {
@@ -242,7 +305,7 @@ class keyboard
         $params['selective']=$this->selective;
       }
     }
-    
+
     return $params;
   }
 
