@@ -149,9 +149,6 @@ class BotFireSendMessage
   {
     $this->params['reply_markup']=json_encode($k->get());
 
-
-     echo json_encode($this->params);
-
      return $this;
   }
 
@@ -207,6 +204,19 @@ class BotFireSendMessage
     return $this;
   }
 
+
+  /**
+  * A simple method for testing your bot's auth token.
+  * docs : https://core.telegram.org/bots/api#getme
+  * @return json object
+  */
+  public function getMe()
+  {
+    $this->method='getMe';
+
+    return $this->sendAndGetJson();
+  }
+
   /**
   * docs : https://core.telegram.org/bots/api#sendmessage
   * method : sendMessage
@@ -219,6 +229,154 @@ class BotFireSendMessage
 
     return $this;
   }
+
+  /**
+  * Use this method to send photos.
+  *
+  * @param $photo InputFile or String
+  * @param $caption String
+  */
+  public function photo($photo,$caption=null)
+  {
+    $this->params['photo']=$photo;
+
+    if ($caption!=null) {
+      $this->params['caption']=$caption;
+    }
+
+    $this->method='sendPhoto';
+
+    return $this;
+  }
+
+  /**
+  * Use this method to send audio
+  * our audio must be in the .MP3 or .M4A format.
+  *
+  * @param $audio InputFile or String
+  * @param $caption String
+  */
+  public function audio($audio,$caption=null)
+  {
+    $this->params['audio']=$audio;
+
+    if ($caption!=null) {
+      $this->params['caption']=$caption;
+    }
+
+    $this->method='sendAudio';
+
+    return $this;
+  }
+
+  /**
+  * Use this method to send general files
+  *
+  * @param $document InputFile or String
+  * @param $caption String
+  */
+  public function document($document,$caption=null)
+  {
+    $this->params['document']=$document;
+
+    if ($caption!=null) {
+      $this->params['caption']=$caption;
+    }
+
+    $this->method='sendDocument';
+
+    return $this;
+  }
+
+  /**
+  * Use this method to send general files
+  *
+  * @param $video InputFile or String
+  * @param $caption String
+  */
+  public function video($video,$caption=null)
+  {
+    $this->params['video']=$video;
+
+    if ($caption!=null) {
+      $this->params['caption']=$caption;
+    }
+
+    $this->method='sendVideo';
+
+    return $this;
+  }
+
+  /**
+  * Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
+  *
+  * @param $animation InputFile or String
+  * @param $caption String
+  */
+  public function animation($animation,$caption=null)
+  {
+    $this->params['animation']=$animation;
+
+    if ($caption!=null) {
+      $this->params['caption']=$caption;
+    }
+
+    $this->method='sendVideo';
+
+    return $this;
+  }
+
+  /**
+  * Use this method to send audio
+  *
+  * @param $voice InputFile or String
+  * @param $caption String
+  */
+  public function voice($voice,$caption=null)
+  {
+    $this->params['voice']=$voice;
+
+    if ($caption!=null) {
+      $this->params['caption']=$caption;
+    }
+
+    $this->method='sendVoice';
+
+    return $this;
+  }
+
+
+    /**
+    * As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long.
+    * Use this method to send video messages.
+    *
+    * @param $video_note InputFile or String
+    * @param $caption String
+    */
+    public function videoNote($video_note,$caption=null)
+    {
+      $this->params['video_note']=$video_note;
+
+      if ($caption!=null) {
+        $this->params['caption']=$caption;
+      }
+
+      $this->method='sendVideoNote';
+
+      return $this;
+    }
+
+    /**
+    * Use this method when you need to tell the user that something is happening on the bot's side
+    * @param $action String ['typing','upload_photo','record_video','upload_video','record_audio','upload_audio','upload_document','find_location','record_video_note','upload_video_note']
+    */
+    public function chatAction($action)
+    {
+      $this->params['action']=$action;
+      $this->method='sendChatAction';
+
+      return $this;
+    }
 
   /**
   * Send Markdown or HTML
