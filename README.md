@@ -1,6 +1,13 @@
 # BotFire
 ### php library for telegram robot
 
+
+<br>
+
+**it is not complete**
+
+**کتابخونه هنوز تکمیل نشده است**
+
 <br>
 
 Build a robot with three lines of code :)
