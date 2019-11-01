@@ -2,7 +2,9 @@
 ### php library for telegram robot
 
 <br>
+
 Build a robot with three lines of code :)
+
 ```php
 bot::setToken('token-string');
 bot::autoInput();
