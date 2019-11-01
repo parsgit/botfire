@@ -37,3 +37,17 @@ use Models\BotFire as bot;
 bot::setToken('token-string');
 bot::autoInput();
 ```
+
+### sendMessage
+
+```php
+bot::this()->message('your message text')->send();
+
+bot::this()->message('use parse_mode')->parse_mode('HTML')->send();
+
+// send message to other user chat_id
+bot::id('chat_id')->message('your message text')->send();
+
+// if you want to get json result
+$res=bot::this()->message('your message text')->sendAndGetJson();
+```
