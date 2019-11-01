@@ -92,7 +92,6 @@ class BotFire{
 
     BotFire::$username=BotFire::checkIsset('username',$ob);
     BotFire::$user_type=BotFire::checkIsset('type',$ob);
-    BotFire::$username=BotFire::checkIsset('id',$ob);
     BotFire::$first_name=BotFire::checkIsset('first_name',$ob);
     BotFire::$last_name=BotFire::checkIsset('last_name',$ob);
     BotFire::$full_name=BotFire::$first_name.' '.BotFire::$last_name;
@@ -116,7 +115,7 @@ class BotFire{
     }
   }
 
-  public function inlineKeyboard()
+  public function keyboard()
   {
     return new keyboard;
   }
@@ -124,6 +123,11 @@ class BotFire{
   public static function this()
   {
     return new BotFireSendMessage(BotFire::$token,BotFire::$chat_id);
+  }
+
+  public static function id($chat_id)
+  {
+    return new BotFireSendMessage(BotFire::$token,$chat_id);
   }
 }
 
@@ -149,6 +153,45 @@ class BotFireSendMessage
      echo json_encode($this->params);
 
      return $this;
+  }
+
+  /**
+  * Use this method to get up to date information about the chat
+  * docs : https://core.telegram.org/bots/api#getchat
+  * method : getChat
+  */
+  public function getChat($chat_id)
+  {
+    $this->params['chat_id']=$chat_id;
+    $this->method='getChat';
+
+    return $this;
+  }
+
+  /**
+  * Use this method to get a list of administrators in a chat
+  * docs : https://core.telegram.org/bots/api#getchatadministrators
+  * method : getChatAdministrators
+  */
+  public function getChatAdministrators($chat_id)
+  {
+    $this->params['chat_id']=$chat_id;
+    $this->method='getChatAdministrators';
+
+    return $this;
+  }
+
+  /**
+  * Use this method to get the number of members in a chat. Returns Int on success.
+  * docs : https://core.telegram.org/bots/api#getchatmemberscount
+  * method : getChatMembersCount
+  */
+  public function getChatMembersCount($chat_id)
+  {
+    $this->params['chat_id']=$chat_id;
+    $this->method='getChatMembersCount';
+
+    return $this;
   }
 
   /**
