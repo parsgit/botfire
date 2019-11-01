@@ -19,7 +19,7 @@ download and move BotFire.php to models directory :|
 
 ## usage
 
-usage in night framework
+usage in [night framework](https://github.com/parsgit/night)
 ```php
 use Models\BotFire as bot;
 ```
