@@ -31,6 +31,7 @@ include_once('BotFire.php');
 use Models\BotFire as bot;
 ```
 <br>
+
 ## basic usage
 
 ```php
