@@ -31,7 +31,7 @@ include_once('BotFire.php');
 use Models\BotFire as bot;
 ```
 <br>
-##basic usage
+## basic usage
 
 ```php
 bot::setToken('token-string');
