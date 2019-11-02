@@ -69,12 +69,21 @@ bot::this()->photo(image_url_string)->send();
 // send by file_id
 bot::this()->photo(file_id_string)->send();
 
-// send from local server
+// send file from local server
 $file=bot::loadFile('user.png');
 bot::this()->photo( $file )->send();
 
 // send photo with caption
 bot::this()->photo( $file , 'Caption text for photo' )->send();
+
+// use other methods
+bot::this()
+->photo( $file , 'Caption text for photo' )
+->parse_mode(string) // HTML or Markdown
+->disable_notification(boolean)
+->reply_to(message_id)
+->keyboard(botfire_keyboard)
+->send();
 ```
 
 ** Other methods can be used like the photo method **
@@ -83,18 +92,56 @@ bot::this()->photo( $file , 'Caption text for photo' )->send();
 Use this method to send audio our audio must be in the .MP3 or .M4A format.
 ```PHP
 bot::this()->audio( $file , 'Caption text for audio' )->send();
+
+// use other methods
+bot::this()
+->audio( $file , 'Caption text for audio' )
+->duration(int_to_seconds) //Duration of the audio in seconds
+->performer(string)
+->title(string) //Track name
+->parse_mode(string) // HTML or Markdown
+->disable_notification(boolean)
+->reply_to(message_id)
+->keyboard(botfire_keyboard)
+->send();
+
 ```
 
 ### sendDocument
 Use this method to send general files
 ```PHP
 bot::this()->document( $file , 'Caption text for document' )->send();
+
+// use other methods
+bot::this()
+->document( $file , 'Caption text for document' )
+->thumb(loadFile_or_string)
+->parse_mode(string) // HTML or Markdown
+->disable_notification(boolean)
+->reply_to(message_id)
+->keyboard(botfire_keyboard)
+->send();
+
 ```
 
 ### sendVideo
 Use this method to send video files,
 ```PHP
 bot::this()->video( $file , 'Caption text for video' )->send();
+
+// use other methods
+bot::this()
+->video( $file , 'Caption text for video' )
+->duration(int_to_seconds) //Duration of sent video in seconds
+->width(int) //Animation width
+->height(int)//Animation height
+->thumb(loadFile_or_string)
+->parse_mode(string) // HTML or Markdown
+->supports_streaming(boolean) //Pass True, if the uploaded video is suitable for streaming
+->disable_notification(boolean)
+->reply_to(message_id)
+->keyboard(botfire_keyboard)
+->send();
 ```
 
 
@@ -106,7 +153,7 @@ bot::this()->animation( $file , 'Caption text for animation' )->send();
 // use other methods
 bot::this()
 ->animation( $file , 'Caption text for animation' )
-->duration(int_to_seconds) //Duration of sent video in seconds
+->duration(int_to_seconds) //Duration of sent animation in seconds
 ->width(int) //Animation width
 ->height(int)//Animation height
 ->thumb(loadFile_or_string)
@@ -126,7 +173,7 @@ bot::this()->voice( $file , 'Caption text for voice' )->send();
 bot::this()
 ->voice($file,'caption')
 ->parse_mode(string) // HTML or Markdown
-->duration(int_to_seconds) //Duration of sent video in seconds
+->duration(int_to_seconds) //Duration of sent voice in seconds
 ->disable_notification(boolean)
 ->reply_to(message_id)
 ->keyboard(botfire_keyboard)
