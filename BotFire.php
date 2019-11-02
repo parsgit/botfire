@@ -419,6 +419,54 @@ class BotFireSendMessage
     return $this;
   }
 
+  public function duration($duration)
+  {
+    $this->params['duration']=$duration;
+    return $this;
+  }
+
+  public function performer($performer)
+  {
+    $this->params['performer']=$performer;
+    return $this;
+  }
+
+  public function title($title)
+  {
+    $this->params['title']=$title;
+    return $this;
+  }
+
+  public function width($width)
+  {
+    $this->params['width']=$width;
+    return $this;
+  }
+
+  public function height($height)
+  {
+    $this->params['height']=$width;
+    return $this;
+  }
+
+  public function supports_streaming($supports_streaming)
+  {
+    $this->params['supports_streaming']=$supports_streaming;
+    return $this;
+  }
+
+  public function thumb($thumb)
+  {
+    $this->params['thumb']=$thumb;
+    return $this;
+  }
+
+  public function length($length)
+  {
+    $this->params['length']=$length;
+    return $this;
+  }
+
   /**
   * Additional interface options. A JSON-serialized
   * object for an inline keyboard,custom reply keyboard,
