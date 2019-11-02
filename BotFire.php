@@ -329,7 +329,7 @@ class BotFireSendMessage
       $this->params['caption']=$caption;
     }
 
-    $this->method='sendVideo';
+    $this->method='sendAnimation';
 
     return $this;
   }

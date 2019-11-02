@@ -70,9 +70,39 @@ bot::this()->photo(image_url_string)->send();
 bot::this()->photo(file_id_string)->send();
 
 // send from local server
-$file=bot::loadFile(file_path);
+$file=bot::loadFile('user.png');
 bot::this()->photo( $file )->send();
 
 // send photo with caption
-bot::this()->photo( 'user.png' , 'Caption text' )->send();
+bot::this()->photo( $file , 'Caption text for photo' )->send();
+```
+<br>
+### sendAudio
+
+used like the photo function
+
+```PHP
+bot::this()->audio( $file , 'Caption text for audio' )->send();
+```
+<br>
+
+### sendDocument
+Use this method to send general files
+```PHP
+bot::this()->document( $file , 'Caption text for document' )->send();
+```
+<br>
+
+### sendVideo
+Use this method to send video files,
+```PHP
+bot::this()->video( $file , 'Caption text for video' )->send();
+```
+
+<br>
+
+### sendAnimation
+Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
+```PHP
+bot::this()->animation( $file , 'Caption text for animation' )->send();
 ```
