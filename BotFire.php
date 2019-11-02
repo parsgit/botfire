@@ -361,14 +361,9 @@ class BotFireSendMessage
     * @param $video_note InputFile or String
     * @param $caption String
     */
-    public function videoNote($video_note,$caption=null)
+    public function videoNote($video_note)
     {
       $this->params['video_note']=$video_note;
-
-      if ($caption!=null) {
-        $this->params['caption']=$caption;
-      }
-
       $this->method='sendVideoNote';
 
       return $this;
