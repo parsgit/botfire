@@ -76,11 +76,11 @@ bot::this()->photo( $file )->send();
 // send photo with caption
 bot::this()->photo( $file , 'Caption text for photo' )->send();
 ```
+
+** Other methods can be used like the photo method **
 <br>
 ### sendAudio
-
-used like the photo function
-
+Use this method to send audio our audio must be in the .MP3 or .M4A format.
 ```PHP
 bot::this()->audio( $file , 'Caption text for audio' )->send();
 ```

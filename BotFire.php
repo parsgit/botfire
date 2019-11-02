@@ -297,7 +297,7 @@ class BotFireSendMessage
   }
 
   /**
-  * Use this method to send general files
+  * Use this method to send video files,
   *
   * @param $video InputFile or String
   * @param $caption String
