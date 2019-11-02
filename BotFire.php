@@ -51,7 +51,7 @@ class BotFire{
     BotFire::initClientInfo();
   }
 
-  public function initClientInfo()
+  public static function initClientInfo()
   {
     if (isset(BotFire::$json->message)) {
       BotFire::$isCallback=false;
@@ -86,7 +86,7 @@ class BotFire{
     }
   }
 
-  private function initChatUserInfo($ob)
+  private static function initChatUserInfo($ob)
   {
     BotFire::$chat_id=BotFire::checkIsset('id',$ob);
 
@@ -115,7 +115,7 @@ class BotFire{
     }
   }
 
-  public function keyboard()
+  public static function keyboard()
   {
     return new keyboard;
   }
@@ -128,6 +128,14 @@ class BotFire{
   public static function id($chat_id)
   {
     return new BotFireSendMessage(BotFire::$token,$chat_id);
+  }
+
+  /*
+  * for send server file to robot
+  */
+  public static function loadFile($path)
+  {
+    return curl_file_create($path);
   }
 }
 
