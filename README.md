@@ -206,7 +206,8 @@ bot::this()->document(  bot::loadFile(file_path_string) )->send();
 
 ### keyboard
 inline keyboard sample :
-```
+
+```php
 $k=bot::keyboard();
 
 $k->inline()->row(function($col){
