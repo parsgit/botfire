@@ -114,7 +114,7 @@ bot::this()
 <br>
 ### sendAudio
 Use this method to send audio our audio must be in the .MP3 or .M4A format.
-```PHP
+```php
 bot::this()->audio( $file , 'Caption text for audio' )->send();
 
 // use other methods
@@ -190,7 +190,7 @@ bot::this()
 
 ### sendVoice
 Use this method to send audio
-```PHP
+```php
 bot::this()->voice( $file , 'Caption text for voice' )->send();
 
 // use other methods
