@@ -1,11 +1,5 @@
-# BotFire telegram robot php library
+#  BotFire
 
-
-<br>
-
-**it is not complete**
-
-**کتابخونه هنوز تکمیل نشده است**
 
 <br>
 
