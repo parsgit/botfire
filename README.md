@@ -86,7 +86,7 @@ $res=bot::this()->message('your message text')->sendAndGetJson();
 
 ### sendPhoto
 
-```PHP
+```php
 // send from url
 bot::this()->photo(image_url_string)->send();
 
@@ -133,7 +133,7 @@ bot::this()
 
 ### sendDocument
 Use this method to send general files
-```PHP
+```php
 bot::this()->document( $file , 'Caption text for document' )->send();
 
 // use other methods
@@ -150,7 +150,7 @@ bot::this()
 
 ### sendVideo
 Use this method to send video files,
-```PHP
+```php
 bot::this()->video( $file , 'Caption text for video' )->send();
 
 // use other methods
@@ -171,7 +171,7 @@ bot::this()
 
 ### sendAnimation
 Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
-```PHP
+```php
 bot::this()->animation( $file , 'Caption text for animation' )->send();
 
 // use other methods
@@ -206,7 +206,7 @@ bot::this()
 
 ### sendVideoNote
 As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long.
-```PHP
+```php
 bot::this()->voice( video_file )->send();
 
 // use other methods
