@@ -4,14 +4,11 @@
 *
 * telegram robot library
 * repository : https://github.com/parsgit/botfire
+* Documentation : https://lib.botfire.ir
 *
 ********************************************/
 
-
-
-
 namespace Models;
-use App\Web\File;
 
 class BotFire{
 

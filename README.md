@@ -1,5 +1,4 @@
-# BotFire
-### php library for telegram robot
+# BotFire telegram robot php library
 
 
 <br>
@@ -23,6 +22,37 @@ bot::this()->message( bot::get('text') )->send();
 <br>
 
 download and move BotFire.php to models directory :|
+
+## data access
+
+```php
+// Get the current chat_id
+$chat_id=bot::$chat_id;
+
+// Get the current username
+$username=bot::$username;
+
+// Get the current first_name
+$first_name=bot::$first_name;
+
+// Get the current last_name
+$last_name=bot::$last_name;
+
+// first_name + last_name
+$full_name=bot::$full_name;
+
+//Receive text the user has sent
+$text=bot::get('text');
+
+//Receive object of string sent by telegram
+$ob_str=bot::$input;
+
+//Receive json object sent by telegram
+$json==bot::$json;
+
+// Get the group title
+$title=bot::$title;
+```
 
 ## usage
 
@@ -213,7 +243,7 @@ $k=bot::keyboard();
 $k->inline()->row(function($col){
   // usage callback
   $col->btn('button name','callback_text');
-  
+
   // usage url
   $col->btnUrl('night framework','https://nightframework.com');
 })
