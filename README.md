@@ -196,3 +196,33 @@ bot::this()
 ->keyboard(botfire_keyboard)
 ->send();
 ```
+
+#### bot::loadFile
+The loadFile function is used to send server files
+
+```php
+bot::this()->document(  bot::loadFile(file_path_string) )->send();
+```
+
+### keyboard
+inline keyboard sample :
+```
+$k=bot::keyboard();
+
+$k->inline()->row(function($col){
+  // usage callback
+  $col->btn('button name','callback_text');
+  
+  // usage url
+  $col->btnUrl('night framework','https://nightframework.com');
+})
+->row(function($col){
+  $col->btn('one button','callback_text_2');
+});
+
+// send message with inline button
+bot::this()->message('message text')->keyboard($k)->send();
+
+// send photo with inline button
+bot::this()->photo(file_id,'caption')->keyboard($k)->send();
+```
