@@ -44,8 +44,32 @@ $ob_str=bot::$input;
 //Receive json object sent by telegram
 $json==bot::$json;
 
+```
+
+check client type
+
+```php
+// If the request is from the supergroup return true else false
+$is_group=bot::isGroup();
+
+// If the request is from the supergroup or group return true else false
+$is_group=bot::isGroup(false);
+```
+
+get request is from the supergroup
+
+```php
+// get group id
+$chat_id = bot::$chat_id;
+
 // Get the group title
-$title=bot::$title;
+$title = bot::$title;
+
+// get sender user
+$user = bot::get('user');
+
+$user_chat_id = $user->id;
+$is_bot = $user->is_bot;
 ```
 
 ## usage

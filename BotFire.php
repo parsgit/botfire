@@ -97,10 +97,37 @@ class BotFire{
 
   }
 
+  /**
+  *
+  */
   public static function get($name)
   {
     return BotFire::$get[$name];
   }
+
+  public function isGroup($only_supergroup=true)
+  {
+    if ($only_supergroup && self::$user_type=='supergroup') {
+      return true;
+    }
+    elseif (! $only_supergroup && (self::$user_type=='supergroup' || self::$user_type=='group') ) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  public function isUser()
+  {
+    if ( self::$user_type == 'private' ) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
 
   private static function checkIsset($name,$ob)
   {
@@ -366,6 +393,58 @@ class BotFireSendMessage
       return $this;
     }
 
+
+    /**
+    * Use this method to send phone contacts.
+    * @param $phone_number string Required
+    * @param $first_name   string Required
+    * @param $last_name   string Optional
+    */
+    public function contact($phone_number,$first_name,$last_name=null)
+    {
+      $this->params['phone_number']=$phone_number;
+      $this->params['first_name']=$first_name;
+
+      if ($last_name!=null) {
+        $this->params['last_name']=$last_name;
+      }
+
+      $this->method='sendContact';
+
+      return $this;
+    }
+
+    /**
+    * Use this method to kick a user from a group
+    *
+    * @param $user_id [Integer] Unique identifier of the target user
+    * @param $until_date [Integer] Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever
+    */
+    public function kickChatMember($user_id,$until_date=null)
+    {
+      $this->params['user_id']=$user_id;
+
+      if ($until_date!=null) {
+        $this->params['until_date']=$until_date;
+      }
+      $this->method='kickChatMember';
+
+      return $this;
+    }
+
+    /**
+    * Use this method to unban a previously kicked user in a supergroup or channel.
+    *
+    * @param $user_id [Integer]
+    */
+    public function unbanChatMember($user_id)
+    {
+      $this->params['user_id']=$user_id;
+      $this->method='unbanChatMember';
+
+      return $this;
+    }
+
     /**
     * Use this method when you need to tell the user that something is happening on the bot's side
     * @param $action String ['typing','upload_photo','record_video','upload_video','record_audio','upload_audio','upload_document','find_location','record_video_note','upload_video_note']
@@ -387,6 +466,14 @@ class BotFireSendMessage
 
     return $this;
   }
+
+  public function vcard($vcard)
+  {
+    $this->params['vcard']=$vcard;
+
+    return $this;
+  }
+
 
   /**
   * Send Markdown or HTML
@@ -531,9 +618,15 @@ class keyboard
     return $this;
   }
 
-  public function btn($name,$callback_data)
+  public function btn($name,$callback_data=null)
   {
-    $this->btns[]=['text'=>$name,'callback_data'=>$callback_data];
+    if ($callback_data!=null) {
+      $this->btns[]=['text'=>$name,'callback_data'=>$callback_data];
+    }
+    else {
+      $this->btns[]=['text'=>$name];
+    }
+
     return $this;
   }
 
