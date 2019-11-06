@@ -54,6 +54,9 @@ $is_group=bot::isGroup();
 
 // If the request is from the supergroup or group return true else false
 $is_group=bot::isGroup(false);
+
+// If the request is from the private user
+$is_user=bot::isUser();
 ```
 
 get request is from the supergroup
