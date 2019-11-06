@@ -189,11 +189,9 @@ class BotFireSendMessage
   * docs : https://core.telegram.org/bots/api#getchat
   * method : getChat
   */
-  public function getChat($chat_id)
+  public function getChat()
   {
-    $this->params['chat_id']=$chat_id;
     $this->method='getChat';
-
     return $this;
   }
 
@@ -202,11 +200,9 @@ class BotFireSendMessage
   * docs : https://core.telegram.org/bots/api#getchatadministrators
   * method : getChatAdministrators
   */
-  public function getChatAdministrators($chat_id)
+  public function getChatAdministrators()
   {
-    $this->params['chat_id']=$chat_id;
     $this->method='getChatAdministrators';
-
     return $this;
   }
 
@@ -215,11 +211,9 @@ class BotFireSendMessage
   * docs : https://core.telegram.org/bots/api#getchatmemberscount
   * method : getChatMembersCount
   */
-  public function getChatMembersCount($chat_id)
+  public function getChatMembersCount()
   {
-    $this->params['chat_id']=$chat_id;
     $this->method='getChatMembersCount';
-
     return $this;
   }
 
