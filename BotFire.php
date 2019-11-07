@@ -71,6 +71,8 @@ class BotFire{
 
       BotFire::$get['text']=BotFire::checkIsset('text',$query->message);
       BotFire::$get['data']=$query->data;
+      BotFire::$get['callback_id']=$query->id;
+      BotFire::$get['message_id']=$query->message->message_id;
 
       if (isset($query->message->chat)) {
         $chat=$query->message->chat;
@@ -384,6 +386,66 @@ class BotFireSendMessage
       $this->params['video_note']=$video_note;
       $this->method='sendVideoNote';
 
+      return $this;
+    }
+
+
+    public function editReplyMarkup($message_id=null)
+    {
+      if ($message_id==null) {
+        $this->message_id(BotFire::get('message_id'));
+      }
+      else {
+        $this->message_id($message_id);
+      }
+      $this->method='editMessageReplyMarkup';
+
+      return $this;
+    }
+
+    public function editMessage($text)
+    {
+      $this->params['text']=$text;
+      $this->message_id(BotFire::get('message_id'));
+      $this->method='editMessageText';
+
+      return $this;
+    }
+
+    public function message_id($message_id)
+    {
+      $this->params['message_id']=$message_id;
+      return $this;
+    }
+
+    public function inline_message_id($inline_message_id)
+    {
+      $this->params['inline_message_id']=$inline_message_id;
+      return $this;
+    }
+
+    public function callback_query_id($callback_query_id)
+    {
+      $this->params['callback_query_id']=$callback_query_id;
+      return $this;
+    }
+
+    public function url($url)
+    {
+      $this->params['url']=$url;
+      return $this;
+    }
+    public function text($text)
+    {
+      $this->params['text']=$text;
+      return $this;
+    }
+
+    public function answerCallback($show_alert=false)
+    {
+      $this->callback_query_id(BotFire::get('callback_id'));
+      $this->params['show_alert']=$show_alert;
+      $this->method='answerCallbackQuery';
       return $this;
     }
 
