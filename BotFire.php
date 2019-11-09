@@ -55,6 +55,7 @@ class BotFire{
       $message=BotFire::$json->message;
 
       BotFire::$get['text']=BotFire::checkIsset('text',$message);
+      BotFire::$get['message_id']=$message->message_id;
 
       if (isset($message->chat)) {
         $chat=$message->chat;
