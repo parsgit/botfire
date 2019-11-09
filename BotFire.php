@@ -186,6 +186,15 @@ class BotFireSendMessage
 
      return $this;
   }
+  
+  public function removeKeyboard($remove_keyboard=true,$selective=null)
+  {
+    $arr=['remove_keyboard'=>$remove_keyboard];
+    if($selective!=null){$arr['selective']=$selective;}
+    $this->params['reply_markup']=json_encode($arr);
+    return $this;
+  }
+
 
   /**
   * Use this method to get up to date information about the chat
