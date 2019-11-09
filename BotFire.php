@@ -411,6 +411,12 @@ class BotFireSendMessage
 
       return $this;
     }
+  
+  public function deleteMessage(){
+    $this->message_id(BotFire::get('message_id'));
+    $this->method='deleteMessage';
+    return $this;
+  }
 
     public function message_id($message_id)
     {
