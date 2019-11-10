@@ -304,7 +304,7 @@ if(bot::$isCallback){
 ```
 
 ### answerCallback($show_alert=false)
-```
+```php
 bot::this()->answerCallback()->send();
 
 // send alert
