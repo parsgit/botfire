@@ -16,7 +16,7 @@ class BotFire{
   public static $server='https://api.telegram.org/bot';
 
 
-  public static $input,$json,$chat_id,$username,$first_name,$last_name,$full_name,$user_type,$title,$isCallback;
+  public static $input,$json,$chat_id,$username,$first_name,$last_name,$full_name,$user_type,$title,$isCallback=false;
 
   public static function setToken($token)
   {
