@@ -255,6 +255,17 @@ The loadFile function is used to send server files
 bot::this()->document(  bot::loadFile(file_path_string) )->send();
 ```
 
+## send chat action
+Use this method when you need to tell the user that something is happening on the bot's side
+
+action list : 
+
+'typing','upload_photo','record_video','upload_video','record_audio','upload_audio','upload_document','find_location','record_video_note','upload_video_note'
+
+```php
+bot::this()->chatAction('typing')->send();
+```
+
 ### keyboard
 inline keyboard sample :
 
