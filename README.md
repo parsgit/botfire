@@ -294,3 +294,19 @@ $k->markup(true)->row(function($col){
 
 bot::this()->message('text')->keyboard($k)->send()
 ```
+
+## Query callback
+check request calback
+```php
+if(bot::$isCallback){
+    /// code ..
+}
+```
+
+### answerCallback($show_alert=false)
+```
+bot::this()->answerCallback()->send();
+
+// send alert
+bot::this()->answerCallback(true)->text('hello Telegram :)')->send();
+```
