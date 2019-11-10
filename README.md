@@ -278,3 +278,19 @@ bot::this()->message('message text')->keyboard($k)->send();
 // send photo with inline button
 bot::this()->photo(file_id,'caption')->keyboard($k)->send();
 ```
+
+[Telegram ReplyKeyboardMarkup Docs](https://core.telegram.org/bots/api#replykeyboardmarkup)
+### markup($resize_keyboard,$one_time_keyboard,$selective)
+```php
+$k=bot::keyboard();
+
+$k->markup()->row(function($col){
+  $col->btn('button name');
+});
+
+$k->markup(true)->row(function($col){
+  $col->btn('button name');
+});
+
+bot::this()->message('text')->keyboard($k)->send()
+```
