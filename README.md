@@ -320,4 +320,8 @@ bot::this()->answerCallback()->send();
 
 // send alert
 bot::this()->answerCallback(true)->text('hello Telegram :)')->send();
+
+// or open robot link
+$link='t.me/your_robot?start=xxxx';
+bot::this()->answerCallback()->url($link)->send();
 ```
