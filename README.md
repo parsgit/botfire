@@ -38,6 +38,9 @@ $full_name=bot::$full_name;
 //Receive text the user has sent
 $text=bot::get('text');
 
+// get message_id
+$message_id=bot::get('message_id');
+
 //Receive object of string sent by telegram
 $ob_str=bot::$input;
 
@@ -109,6 +112,15 @@ bot::id(chat_id)->message('your message text')->send();
 
 // if you want to get json result
 $res=bot::this()->message('your message text')->sendAndGetJson();
+
+// use other methods
+bot::this()
+->message('text')
+->parse_mode(string) // HTML or Markdown
+->disable_notification(boolean)
+->reply_to(message_id)
+->keyboard(botfire_keyboard)
+->send();
 ```
 
 ### sendPhoto
