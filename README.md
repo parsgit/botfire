@@ -62,7 +62,7 @@ $is_group=bot::isGroup(false);
 $is_user=bot::isUser();
 ```
 
-get request is from the supergroup
+get request from the supergroup
 
 ```php
 // get group id
