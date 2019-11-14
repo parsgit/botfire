@@ -313,6 +313,15 @@ if(bot::$isCallback){
     /// code ..
 }
 ```
+Receive callback data
+```php
+$data=bot::get('data');
+```
+
+Receive callback_query_id
+```php
+$query_id = bot::get('callback_id');
+```
 
 ### answerCallback($show_alert=false)
 ```php
