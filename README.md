@@ -11,6 +11,29 @@ bot::autoInput();
 
 bot::this()->message( bot::get('text') )->send();
 ```
+<br>
+
+## usage
+
+usage in [night framework](https://github.com/parsgit/night)
+```php
+use Models\BotFire as bot;
+```
+<br>
+or usage in other project
+
+```php
+include_once('BotFire.php');
+use Models\BotFire as bot;
+```
+<br>
+
+## basic usage
+
+```php
+bot::setToken('token-string');
+bot::autoInput();
+```
 
 
 <br>
@@ -78,27 +101,7 @@ $user_chat_id = $user->id;
 $is_bot = $user->is_bot;
 ```
 
-## usage
 
-usage in [night framework](https://github.com/parsgit/night)
-```php
-use Models\BotFire as bot;
-```
-<br>
-or usage in other project
-
-```php
-include_once('BotFire.php');
-use Models\BotFire as bot;
-```
-<br>
-
-## basic usage
-
-```php
-bot::setToken('token-string');
-bot::autoInput();
-```
 
 ### sendMessage
 
