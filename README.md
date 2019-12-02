@@ -387,3 +387,34 @@ bot::this()
 ->keyboard($k) // A JSON-serialized object for an inline keyboard.
 ->send();
 ```
+
+
+### editMessageReplyMarkup
+
+Use this method to edit only the reply markup of messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+
+```php
+bot::this()->editReplyMarkup()->keyboard($k)->send();
+
+// use other methods
+bot::this()
+->editReplyMarkup('new text string')
+
+// Use custom message_id
+->message_id(id)
+// Use custom inline_message_id
+->inline_message_id(id)
+
+->keyboard($k) // A JSON-serialized object for an inline keyboard.
+->send();
+```
+
+### deleteMessage
+
+Use this method to delete a message
+
+```php
+bot::this()->deleteMessage()->send();
+// or
+bot::this()->deleteMessage()->message_id('custom message_id')->send();
+```
