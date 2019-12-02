@@ -372,7 +372,9 @@ Use this method to edit text and game messages. On success, if edited message is
 
 ```php
 bot::this()->editMessage('new text string')->send();
+```
 
+```php
 // use other methods
 bot::this()
 ->editMessage('new text string')
@@ -395,7 +397,9 @@ Use this method to edit only the reply markup of messages. On success, if edited
 
 ```php
 bot::this()->editReplyMarkup()->keyboard($k)->send();
+```
 
+```php
 // use other methods
 bot::this()
 ->editReplyMarkup('new text string')
