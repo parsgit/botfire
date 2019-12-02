@@ -123,6 +123,7 @@ bot::this()
 ->disable_notification(boolean)
 ->reply_to(message_id)
 ->keyboard(botfire_keyboard)
+->disable_web_page_preview(boolean)
 ->send();
 ```
 
