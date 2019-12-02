@@ -167,8 +167,8 @@ class BotFire{
 }
 
 /**
- *
- */
+*
+*/
 class BotFireSendMessage
 {
   private $token,$method;
@@ -184,9 +184,9 @@ class BotFireSendMessage
   {
     $this->params['reply_markup']=json_encode($k->get());
 
-     return $this;
+    return $this;
   }
-  
+
   public function removeKeyboard($remove_keyboard=true,$selective=null)
   {
     $arr=['remove_keyboard'=>$remove_keyboard];
@@ -384,150 +384,166 @@ class BotFireSendMessage
   }
 
 
-    /**
-    * As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long.
-    * Use this method to send video messages.
-    *
-    * @param $video_note InputFile or String
-    * @param $caption String
-    */
-    public function videoNote($video_note)
-    {
-      $this->params['video_note']=$video_note;
-      $this->method='sendVideoNote';
+  /**
+  * As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long.
+  * Use this method to send video messages.
+  *
+  * @param $video_note InputFile or String
+  * @param $caption String
+  */
+  public function videoNote($video_note)
+  {
+    $this->params['video_note']=$video_note;
+    $this->method='sendVideoNote';
 
-      return $this;
-    }
+    return $this;
+  }
 
 
-    public function editReplyMarkup($message_id=null)
-    {
-      if ($message_id==null) {
-        $this->message_id(BotFire::get('message_id'));
-      }
-      else {
-        $this->message_id($message_id);
-      }
-      $this->method='editMessageReplyMarkup';
-
-      return $this;
-    }
-
-    public function editMessage($text)
-    {
-      $this->params['text']=$text;
+  public function editReplyMarkup($message_id=null)
+  {
+    if ($message_id==null) {
       $this->message_id(BotFire::get('message_id'));
-      $this->method='editMessageText';
-
-      return $this;
     }
-  
+    else {
+      $this->message_id($message_id);
+    }
+    $this->method='editMessageReplyMarkup';
+
+    return $this;
+  }
+
+  public function editMessage($text)
+  {
+    $this->params['text']=$text;
+    $this->message_id(BotFire::get('message_id'));
+    $this->method='editMessageText';
+
+    return $this;
+  }
+
   public function deleteMessage(){
     $this->message_id(BotFire::get('message_id'));
     $this->method='deleteMessage';
     return $this;
   }
 
-    public function message_id($message_id)
-    {
-      $this->params['message_id']=$message_id;
-      return $this;
+  public function message_id($message_id)
+  {
+    $this->params['message_id']=$message_id;
+    return $this;
+  }
+
+  public function inline_message_id($inline_message_id)
+  {
+    $this->params['inline_message_id']=$inline_message_id;
+    return $this;
+  }
+
+  public function callback_query_id($callback_query_id)
+  {
+    $this->params['callback_query_id']=$callback_query_id;
+    return $this;
+  }
+
+  public function url($url)
+  {
+    $this->params['url']=$url;
+    return $this;
+  }
+  public function text($text)
+  {
+    $this->params['text']=$text;
+    return $this;
+  }
+
+  public function answerCallback($show_alert=false)
+  {
+    $this->callback_query_id(BotFire::get('callback_id'));
+    $this->params['show_alert']=$show_alert;
+    $this->method='answerCallbackQuery';
+    return $this;
+  }
+
+
+  /**
+  * Use this method to send phone contacts.
+  * @param $phone_number string Required
+  * @param $first_name   string Required
+  * @param $last_name   string Optional
+  */
+  public function contact($phone_number,$first_name,$last_name=null)
+  {
+    $this->params['phone_number']=$phone_number;
+    $this->params['first_name']=$first_name;
+
+    if ($last_name!=null) {
+      $this->params['last_name']=$last_name;
     }
 
-    public function inline_message_id($inline_message_id)
-    {
-      $this->params['inline_message_id']=$inline_message_id;
-      return $this;
+    $this->method='sendContact';
+
+    return $this;
+  }
+
+  /**
+  * Use this method to kick a user from a group
+  *
+  * @param $user_id [Integer] Unique identifier of the target user
+  * @param $until_date [Integer] Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever
+  */
+  public function kickChatMember($user_id,$until_date=null)
+  {
+    $this->params['user_id']=$user_id;
+
+    if ($until_date!=null) {
+      $this->params['until_date']=$until_date;
     }
+    $this->method='kickChatMember';
 
-    public function callback_query_id($callback_query_id)
-    {
-      $this->params['callback_query_id']=$callback_query_id;
-      return $this;
-    }
+    return $this;
+  }
 
-    public function url($url)
-    {
-      $this->params['url']=$url;
-      return $this;
-    }
-    public function text($text)
-    {
-      $this->params['text']=$text;
-      return $this;
-    }
+  /**
+  * Use this method to unban a previously kicked user in a supergroup or channel.
+  *
+  * @param $user_id [Integer]
+  */
+  public function unbanChatMember($user_id)
+  {
+    $this->params['user_id']=$user_id;
+    $this->method='unbanChatMember';
 
-    public function answerCallback($show_alert=false)
-    {
-      $this->callback_query_id(BotFire::get('callback_id'));
-      $this->params['show_alert']=$show_alert;
-      $this->method='answerCallbackQuery';
-      return $this;
-    }
+    return $this;
+  }
+
+  /**
+  * Use this method when you need to tell the user that something is happening on the bot's side
+  * @param $action String ['typing','upload_photo','record_video','upload_video','record_audio','upload_audio','upload_document','find_location','record_video_note','upload_video_note']
+  */
+  public function chatAction($action)
+  {
+    $this->params['action']=$action;
+    $this->method='sendChatAction';
+
+    return $this;
+  }
 
 
-    /**
-    * Use this method to send phone contacts.
-    * @param $phone_number string Required
-    * @param $first_name   string Required
-    * @param $last_name   string Optional
-    */
-    public function contact($phone_number,$first_name,$last_name=null)
-    {
-      $this->params['phone_number']=$phone_number;
-      $this->params['first_name']=$first_name;
+  /**
+  * Use this method to send point on the map. On success, the sent Message is returned.
+  * @param  [Float number] $latitude  Latitude of the location
+  * @param  [Float number] $longitude Longitude of the location
+  */
+  public function location($latitude,$longitude)
+  {
+    $this->params['latitude']=$latitude;
+    $this->params['longitude']=$longitude;
 
-      if ($last_name!=null) {
-        $this->params['last_name']=$last_name;
-      }
+    $this->method='sendLocation';
 
-      $this->method='sendContact';
-
-      return $this;
-    }
-
-    /**
-    * Use this method to kick a user from a group
-    *
-    * @param $user_id [Integer] Unique identifier of the target user
-    * @param $until_date [Integer] Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever
-    */
-    public function kickChatMember($user_id,$until_date=null)
-    {
-      $this->params['user_id']=$user_id;
-
-      if ($until_date!=null) {
-        $this->params['until_date']=$until_date;
-      }
-      $this->method='kickChatMember';
-
-      return $this;
-    }
-
-    /**
-    * Use this method to unban a previously kicked user in a supergroup or channel.
-    *
-    * @param $user_id [Integer]
-    */
-    public function unbanChatMember($user_id)
-    {
-      $this->params['user_id']=$user_id;
-      $this->method='unbanChatMember';
-
-      return $this;
-    }
-
-    /**
-    * Use this method when you need to tell the user that something is happening on the bot's side
-    * @param $action String ['typing','upload_photo','record_video','upload_video','record_audio','upload_audio','upload_document','find_location','record_video_note','upload_video_note']
-    */
-    public function chatAction($action)
-    {
-      $this->params['action']=$action;
-      $this->method='sendChatAction';
-
-      return $this;
-    }
+    return $this;
+  }
 
   /**
   * Send Markdown or HTML
@@ -562,6 +578,16 @@ class BotFireSendMessage
   public function disable_notification($active=true)
   {
     $this->params['disable_notification']=$active;
+    return $this;
+  }
+
+  /**
+   * Period in seconds for which the location will be updated (see Live Locations, should be between 60 and 86400.
+   * @param  [Integer] $live_period
+   */
+  public function live_period($live_period)
+  {
+    $this->params['live_period']=$live_period;
     return $this;
   }
 
@@ -650,8 +676,8 @@ class BotFireSendMessage
 }
 
 /**
- *
- */
+*
+*/
 class keyboard
 {
   private $params=[];
