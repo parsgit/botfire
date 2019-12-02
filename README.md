@@ -363,3 +363,27 @@ bot::this()->answerCallback(true)->text('hello Telegram :)')->send();
 $link='t.me/your_robot?start=xxxx';
 bot::this()->answerCallback()->url($link)->send();
 ```
+
+
+## Edit Message
+
+### editMessageText
+Use this method to edit text and game messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+
+```php
+bot::this()->editMessage('new text string')->send();
+
+// use other methods
+bot::this()
+->editMessage('new text string')
+
+// Use custom message_id
+->message_id(id)
+// Use custom inline_message_id
+->inline_message_id(id)
+
+->parse_mode('HTML')
+->disable_web_page_preview(boolean)
+->keyboard($k) // A JSON-serialized object for an inline keyboard.
+->send();
+```
