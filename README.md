@@ -263,6 +263,17 @@ bot::this()
 ->send();
 ```
 
+### sendLocation
+Use this method to send point on the map. On success, the sent Message is returned.
+
+```php
+bot::this()->location($latitude,$longitude)->send();
+
+// support live_period
+bot::this()->location($latitude,$longitude)->live_period($number)->send();
+```
+
+
 #### bot::loadFile
 The loadFile function is used to send server files
 
