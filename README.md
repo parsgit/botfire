@@ -263,6 +263,15 @@ bot::this()
 ->send();
 ```
 
+
+### bot::loadFile
+The loadFile function is used to send server files
+
+```php
+bot::this()->document(  bot::loadFile(file_path_string) )->send();
+```
+
+
 ### sendLocation
 Use this method to send point on the map. On success, the sent Message is returned.
 
@@ -273,13 +282,6 @@ bot::this()->location($latitude,$longitude)->send();
 bot::this()->location($latitude,$longitude)->live_period($number)->send();
 ```
 
-
-#### bot::loadFile
-The loadFile function is used to send server files
-
-```php
-bot::this()->document(  bot::loadFile(file_path_string) )->send();
-```
 
 ## send chat action
 Use this method when you need to tell the user that something is happening on the bot's side
