@@ -144,8 +144,10 @@ bot::this()->photo( $file )->send();
 
 // send photo with caption
 bot::this()->photo( $file , 'Caption text for photo' )->send();
+```
 
 use other methods
+
 ```php
 bot::this()
 ->photo( $file , 'Caption text for photo' )
