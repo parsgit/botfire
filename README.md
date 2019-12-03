@@ -115,8 +115,10 @@ bot::id(chat_id)->message('your message text')->send();
 
 // if you want to get json result
 $res=bot::this()->message('your message text')->sendAndGetJson();
+```
 
-// use other methods
+ use other methods
+```php
 bot::this()
 ->message('text')
 ->parse_mode(string) // HTML or Markdown
@@ -143,7 +145,8 @@ bot::this()->photo( $file )->send();
 // send photo with caption
 bot::this()->photo( $file , 'Caption text for photo' )->send();
 
-// use other methods
+use other methods
+```php
 bot::this()
 ->photo( $file , 'Caption text for photo' )
 ->parse_mode(string) // HTML or Markdown
@@ -159,8 +162,11 @@ bot::this()
 Use this method to send audio our audio must be in the .MP3 or .M4A format.
 ```php
 bot::this()->audio( $file , 'Caption text for audio' )->send();
+```
 
-// use other methods
+use other methods
+
+```php
 bot::this()
 ->audio( $file , 'Caption text for audio' )
 ->duration(int_to_seconds) //Duration of the audio in seconds
