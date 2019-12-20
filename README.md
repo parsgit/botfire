@@ -28,7 +28,7 @@ use Models\BotFire as bot;
 ```
 <br>
 
-## basic usage
+## basic usage  ( [sample](https://github.com/parsgit/botfire/wiki/a-basic-example-of-a-robot) )
 
 ```php
 bot::setToken('token-string');
