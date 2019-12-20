@@ -20,7 +20,8 @@ usage in [night framework](https://github.com/parsgit/night)
 use Models\BotFire as bot;
 ```
 <br>
-or usage in other project [ sample ](https://github.com/parsgit/botfire/wiki/a-basic-example-of-a-robot)
+
+or usage in other project ( [view sample](https://github.com/parsgit/botfire/wiki/a-basic-example-of-a-robot) )
 
 
 ```php
