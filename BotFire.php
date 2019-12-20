@@ -421,6 +421,15 @@ class BotFireSendMessage
 
     return $this;
   }
+  
+  public function editCaption($caption)
+  {
+    $this->params['caption']=$caption;
+    $this->message_id(BotFire::get('message_id'));
+    $this->method='editMessageCaption';
+
+    return $this;
+  }
 
   public function deleteMessage(){
     $this->message_id(BotFire::get('message_id'));
