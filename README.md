@@ -399,6 +399,30 @@ bot::this()
 ```
 
 
+### editMessageCaption
+
+Use this method to edit captions of messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
+
+```php
+bot::this()->editCaption('new text string')->send();
+```
+
+```php
+// use other methods
+bot::this()
+->editCaption('new text string')
+
+// Use custom message_id
+->message_id(id)
+// Use custom inline_message_id
+->inline_message_id(id)
+
+->parse_mode('HTML')
+->disable_web_page_preview(boolean)
+->keyboard($k) // A JSON-serialized object for an inline keyboard.
+->send();
+```
+
 ### editMessageReplyMarkup
 
 Use this method to edit only the reply markup of messages. On success, if edited message is sent by the bot, the edited Message is returned, otherwise True is returned.
