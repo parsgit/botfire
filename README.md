@@ -418,7 +418,6 @@ bot::this()
 ->inline_message_id(id)
 
 ->parse_mode('HTML')
-->disable_web_page_preview(boolean)
 ->keyboard($k) // A JSON-serialized object for an inline keyboard.
 ->send();
 ```
