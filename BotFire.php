@@ -4,7 +4,7 @@
 *
 * telegram robot library
 * repository : https://github.com/parsgit/botfire
-* Documentation : https://lib.botfire.ir
+* Documentation : https://telegram.botfire.ir
 *
 ********************************************/
 
@@ -421,7 +421,7 @@ class BotFireSendMessage
 
     return $this;
   }
-  
+
   public function editCaption($caption)
   {
     $this->params['caption']=$caption;
@@ -436,6 +436,40 @@ class BotFireSendMessage
     $this->method='deleteMessage';
     return $this;
   }
+
+
+
+  public function getWebhookInfo()
+  {
+    $this->method='getWebhookInfo';
+    return $this;
+  }
+  public function setWebhook($url)
+  {
+    $this->method='setWebhook';
+    $this->params['url']=$url;
+    return $this;
+  }
+  public function certificate($file)
+  {
+    $this->params['certificate']=$file;
+    return $this;
+  }
+
+  public function max_connections($value=40)
+  {
+    $this->params['max_connections']=$value;
+    return $this;
+  }
+
+  public function allowed_updates($array)
+  {
+    $this->params['allowed_updates']=$array;
+    return $this;
+  }
+
+
+
 
   public function message_id($message_id)
   {
