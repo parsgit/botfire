@@ -469,6 +469,8 @@ bot::this()->setWebhook($url)->max_connections(40)->send();
 // or
 $cert=bot::loadFile('certificate.txt');
 
+// or
+
 bot::this()
 ->setWebhook($url)
 ->certificate($cert)
