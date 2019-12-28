@@ -455,3 +455,31 @@ bot::this()->deleteMessage()->send();
 // or
 bot::this()->deleteMessage()->message_id('custom message_id')->send();
 ```
+
+### setWebhook
+
+```php
+
+bot::this()->setWebhook($url)->send();
+
+// or
+
+bot::this()->setWebhook($url)->max_connections(40)->send();
+
+// or
+$cert=bot::loadFile('certificate.txt');
+
+bot::this()
+->setWebhook($url)
+->certificate($cert)
+->allowed_updates($array)
+->send();
+```
+
+
+### getWebhookInfo
+
+```php
+$res=bot::this()->getWebhookInfo()->send();
+echo $res;
+```
