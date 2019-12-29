@@ -744,9 +744,12 @@ class keyboard
 
 
 
-  public function row($func)
+  public function row($func=null)
   {
-    $func($this);
+    if ($func!=null) {
+      $func($this);
+    }
+    
     $this->params[]=$this->btns;
     $this->btns=[];
 
