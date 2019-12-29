@@ -329,6 +329,16 @@ bot::this()->message('message text')->keyboard($k)->send();
 bot::this()->photo(file_id,'caption')->keyboard($k)->send();
 ```
 
+sample 2
+```php
+$k=bot::keyboard();
+$k->btn('game 1','game_callback');
+$k->btn('game 2','game_callback');
+$k->row();
+
+bot::this()->message('message text')->keyboard($k)->send();
+```
+
 [Telegram ReplyKeyboardMarkup Docs](https://core.telegram.org/bots/api#replykeyboardmarkup)
 ### markup($resize_keyboard,$one_time_keyboard,$selective)
 ```php
