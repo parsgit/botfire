@@ -103,7 +103,11 @@ $user_chat_id = $user->id;
 $is_bot = $user->is_bot;
 ```
 
-
+### getMe
+```php
+$res=bot::this()->getMe()->send();
+echo $res;
+```
 
 ### sendMessage
 
