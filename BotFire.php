@@ -20,32 +20,32 @@ class BotFire{
 
   public static function setToken($token)
   {
-    BotFire::$token=$token;
+    self::$token=$token;
   }
 
   public static function getToken()
   {
-    return BotFire::$token;
+    return self::$token;
   }
 
   public static function setJson($input)
   {
-    BotFire::$json=json_decode($input);
+    self::$json=json_decode($input);
   }
 
   public static function getInput(){
 
-    if (BotFire::$input==null) {
-      BotFire::$input=file_get_contents ( 'php://input' );
+    if (self::$input==null) {
+      self::$input=file_get_contents ( 'php://input' );
     }
 
-    return BotFire::$input;
+    return self::$input;
   }
 
   public static function autoInput()
   {
-    BotFire::setJson(BotFire::getInput());
-    BotFire::initClientInfo();
+    self::setJson(self::getInput());
+    self::initClientInfo();
   }
 
   public static function initClientInfo()
@@ -89,16 +89,43 @@ class BotFire{
 
   private static function initChatUserInfo($ob)
   {
-    BotFire::$chat_id=BotFire::checkIsset('id',$ob);
+    self::$chat_id=self::checkIsset('id',$ob);
 
-    BotFire::$username=BotFire::checkIsset('username',$ob);
-    BotFire::$user_type=BotFire::checkIsset('type',$ob);
-    BotFire::$first_name=BotFire::checkIsset('first_name',$ob);
-    BotFire::$last_name=BotFire::checkIsset('last_name',$ob);
-    BotFire::$full_name=BotFire::$first_name.' '.BotFire::$last_name;
+    self::$username=self::checkIsset('username',$ob);
+    self::$user_type=self::checkIsset('type',$ob);
+    self::$first_name=self::checkIsset('first_name',$ob);
+    self::$last_name=self::checkIsset('last_name',$ob);
+    self::$full_name=self::$first_name.' '.self::$last_name;
 
-    BotFire::$title=BotFire::checkIsset('title',$ob);
+    self::$title=self::checkIsset('title',$ob);
 
+  }
+
+  public static function getMessageType(){
+    if (isset(self::$json->message->text)) {
+      return ['type'=>'text','data'=>self::$json->message->text];
+    }
+    elseif (isset(self::$json->message->photo)) {
+      return ['type'=>'photo','data'=>self::$json->message->photo];
+    }
+    elseif (isset(self::$json->message->video)) {
+      return ['type'=>'video','data'=>self::$json->message->video];
+    }
+    elseif (isset(self::$json->message->video_note)) {
+      return ['type'=>'video_note','data'=>self::$json->message->video_note];
+    }
+    elseif (isset(self::$json->message->voice)) {
+      return ['type'=>'voice','data'=>self::$json->message->voice];
+    }
+    elseif (isset(self::$json->message->animation)) {
+      return ['type'=>'animation','data'=>self::$json->message->animation];
+    }
+    elseif (isset(self::$json->message->document)) {
+      return ['type'=>'document','data'=>self::$json->message->document];
+    }
+    else {
+      return ['type'=>false,'data'=>self::$json];
+    }
   }
 
   /**
@@ -106,7 +133,7 @@ class BotFire{
   */
   public static function get($name)
   {
-    return BotFire::$get[$name];
+    return self::$get[$name];
   }
 
   public function isGroup($only_supergroup=true)
@@ -150,12 +177,12 @@ class BotFire{
 
   public static function this()
   {
-    return new BotFireSendMessage(BotFire::$token,BotFire::$chat_id);
+    return new BotFireSendMessage(self::$token,self::$chat_id);
   }
 
   public static function id($chat_id)
   {
-    return new BotFireSendMessage(BotFire::$token,$chat_id);
+    return new BotFireSendMessage(self::$token,$chat_id);
   }
 
   /*
@@ -404,7 +431,7 @@ class BotFireSendMessage
   public function editReplyMarkup($message_id=null)
   {
     if ($message_id==null) {
-      $this->message_id(BotFire::get('message_id'));
+      $this->message_id(self::get('message_id'));
     }
     else {
       $this->message_id($message_id);
@@ -417,7 +444,7 @@ class BotFireSendMessage
   public function editMessage($text)
   {
     $this->params['text']=$text;
-    $this->message_id(BotFire::get('message_id'));
+    $this->message_id(self::get('message_id'));
     $this->method='editMessageText';
 
     return $this;
@@ -426,14 +453,14 @@ class BotFireSendMessage
   public function editCaption($caption)
   {
     $this->params['caption']=$caption;
-    $this->message_id(BotFire::get('message_id'));
+    $this->message_id(self::get('message_id'));
     $this->method='editMessageCaption';
 
     return $this;
   }
 
   public function deleteMessage(){
-    $this->message_id(BotFire::get('message_id'));
+    $this->message_id(self::get('message_id'));
     $this->method='deleteMessage';
     return $this;
   }
@@ -503,7 +530,7 @@ class BotFireSendMessage
 
   public function answerCallback($show_alert=false)
   {
-    $this->callback_query_id(BotFire::get('callback_id'));
+    $this->callback_query_id(self::get('callback_id'));
     $this->params['show_alert']=$show_alert;
     $this->method='answerCallbackQuery';
     return $this;
@@ -707,7 +734,7 @@ class BotFireSendMessage
 
   public function send()
   {
-    $url=BotFire::$server.$this->token.'/'.$this->method;
+    $url=self::$server.$this->token.'/'.$this->method;
     return Request::api($url,$this->params,true);
   }
 
