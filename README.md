@@ -66,15 +66,51 @@ $text=bot::get('text');
 // get message_id
 $message_id=bot::get('message_id');
 
+// get message caption
+$caption=bot::get('caption');
+
 //Receive object of string sent by telegram
 $ob_str=bot::$input;
 
 //Receive json object sent by telegram
 $json==bot::$json;
+```
+<hr>
+
+### Get message type (new)
+
+```php
+// support messages [text,photo,video,video_note,voice,animation,document]
+$message = bot::getMessageType();
 
 ```
 
-check client type
+output text sample :
+```json
+{
+  "type":"photo",
+  "data":"Hello botfire"
+}
+```
+
+output photo sample :
+```json
+{
+  "type": "photo",
+  "data": [
+    {
+      "file_id": "AgA***",
+      "file_unique_id": "AQA***",
+      "file_size": 20303,
+      "width": 320,
+      "height": 296
+    }
+  ]
+}
+```
+<hr>
+
+**check client type**
 
 ```php
 // If the request is from the supergroup return true else false
@@ -301,7 +337,7 @@ bot::this()->location($latitude,$longitude)->live_period($number)->send();
 ## send chat action
 Use this method when you need to tell the user that something is happening on the bot's side
 
-action list : 
+action list :
 
 'typing','upload_photo','record_video','upload_video','record_audio','upload_audio','upload_document','find_location','record_video_note','upload_video_note'
 
