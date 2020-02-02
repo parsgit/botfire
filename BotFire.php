@@ -20,111 +20,111 @@ class BotFire{
 
   public static function setToken($token)
   {
-    self::$token=$token;
+    BotFire::$token=$token;
   }
 
   public static function getToken()
   {
-    return self::$token;
+    return BotFire::$token;
   }
 
   public static function setJson($input)
   {
-    self::$json=json_decode($input);
+    BotFire::$json=json_decode($input);
   }
 
   public static function getInput(){
 
-    if (self::$input==null) {
-      self::$input=file_get_contents ( 'php://input' );
+    if (BotFire::$input==null) {
+      BotFire::$input=file_get_contents ( 'php://input' );
     }
 
-    return self::$input;
+    return BotFire::$input;
   }
 
   public static function autoInput()
   {
-    self::setJson(self::getInput());
-    self::initClientInfo();
+    BotFire::setJson(BotFire::getInput());
+    BotFire::initClientInfo();
   }
 
   public static function initClientInfo()
   {
-    if (isset(self::$json->message)) {
-      self::$isCallback=false;
-      $message=self::$json->message;
+    if (isset(BotFire::$json->message)) {
+      BotFire::$isCallback=false;
+      $message=BotFire::$json->message;
 
-      self::$get['text']=self::checkIsset('text',$message);
-      self::$get['caption']=self::checkIsset('caption',$message);
-      self::$get['message_id']=$message->message_id;
+      BotFire::$get['text']=BotFire::checkIsset('text',$message);
+      BotFire::$get['caption']=BotFire::checkIsset('caption',$message);
+      BotFire::$get['message_id']=$message->message_id;
 
       if (isset($message->chat)) {
         $chat=$message->chat;
-        self::initChatUserInfo($chat);
+        BotFire::initChatUserInfo($chat);
       }
 
       if ($message->from) {
-        self::$get['user']=$message->from;
+        BotFire::$get['user']=$message->from;
       }
     }
-    else if( isset(self::$json->callback_query) ) {
-      self::$isCallback=true;
-      $query=self::$json->callback_query;
+    else if( isset(BotFire::$json->callback_query) ) {
+      BotFire::$isCallback=true;
+      $query=BotFire::$json->callback_query;
 
-      self::$get['text']=self::checkIsset('text',$query->message);
-      self::$get['caption']=self::checkIsset('caption',$query->message);
-      self::$get['data']=$query->data;
-      self::$get['callback_id']=$query->id;
-      self::$get['message_id']=$query->message->message_id;
+      BotFire::$get['text']=BotFire::checkIsset('text',$query->message);
+      BotFire::$get['caption']=BotFire::checkIsset('caption',$query->message);
+      BotFire::$get['data']=$query->data;
+      BotFire::$get['callback_id']=$query->id;
+      BotFire::$get['message_id']=$query->message->message_id;
 
       if (isset($query->message->chat)) {
         $chat=$query->message->chat;
-        self::initChatUserInfo($chat);
+        BotFire::initChatUserInfo($chat);
       }
       if ($query->from) {
-        self::$get['user']=$query->from;
+        BotFire::$get['user']=$query->from;
       }
     }
   }
 
   private static function initChatUserInfo($ob)
   {
-    self::$chat_id=self::checkIsset('id',$ob);
+    BotFire::$chat_id=BotFire::checkIsset('id',$ob);
 
-    self::$username=self::checkIsset('username',$ob);
-    self::$user_type=self::checkIsset('type',$ob);
-    self::$first_name=self::checkIsset('first_name',$ob);
-    self::$last_name=self::checkIsset('last_name',$ob);
-    self::$full_name=self::$first_name.' '.self::$last_name;
+    BotFire::$username=BotFire::checkIsset('username',$ob);
+    BotFire::$user_type=BotFire::checkIsset('type',$ob);
+    BotFire::$first_name=BotFire::checkIsset('first_name',$ob);
+    BotFire::$last_name=BotFire::checkIsset('last_name',$ob);
+    BotFire::$full_name=BotFire::$first_name.' '.BotFire::$last_name;
 
-    self::$title=self::checkIsset('title',$ob);
+    BotFire::$title=BotFire::checkIsset('title',$ob);
 
   }
 
   public static function getMessageType(){
-    if (isset(self::$json->message->text)) {
-      return ['type'=>'text','data'=>self::$json->message->text];
+    if (isset(BotFire::$json->message->text)) {
+      return ['type'=>'text','data'=>BotFire::$json->message->text];
     }
-    elseif (isset(self::$json->message->photo)) {
-      return ['type'=>'photo','data'=>self::$json->message->photo];
+    elseif (isset(BotFire::$json->message->photo)) {
+      return ['type'=>'photo','data'=>BotFire::$json->message->photo];
     }
-    elseif (isset(self::$json->message->video)) {
-      return ['type'=>'video','data'=>self::$json->message->video];
+    elseif (isset(BotFire::$json->message->video)) {
+      return ['type'=>'video','data'=>BotFire::$json->message->video];
     }
-    elseif (isset(self::$json->message->video_note)) {
-      return ['type'=>'video_note','data'=>self::$json->message->video_note];
+    elseif (isset(BotFire::$json->message->video_note)) {
+      return ['type'=>'video_note','data'=>BotFire::$json->message->video_note];
     }
-    elseif (isset(self::$json->message->voice)) {
-      return ['type'=>'voice','data'=>self::$json->message->voice];
+    elseif (isset(BotFire::$json->message->voice)) {
+      return ['type'=>'voice','data'=>BotFire::$json->message->voice];
     }
-    elseif (isset(self::$json->message->animation)) {
-      return ['type'=>'animation','data'=>self::$json->message->animation];
+    elseif (isset(BotFire::$json->message->animation)) {
+      return ['type'=>'animation','data'=>BotFire::$json->message->animation];
     }
-    elseif (isset(self::$json->message->document)) {
-      return ['type'=>'document','data'=>self::$json->message->document];
+    elseif (isset(BotFire::$json->message->document)) {
+      return ['type'=>'document','data'=>BotFire::$json->message->document];
     }
     else {
-      return ['type'=>false,'data'=>self::$json];
+      return ['type'=>false,'data'=>BotFire::$json];
     }
   }
 
@@ -133,15 +133,15 @@ class BotFire{
   */
   public static function get($name)
   {
-    return self::$get[$name];
+    return BotFire::$get[$name];
   }
 
   public function isGroup($only_supergroup=true)
   {
-    if ($only_supergroup && self::$user_type=='supergroup') {
+    if ($only_supergroup && BotFire::$user_type=='supergroup') {
       return true;
     }
-    elseif (! $only_supergroup && (self::$user_type=='supergroup' || self::$user_type=='group') ) {
+    elseif (! $only_supergroup && (BotFire::$user_type=='supergroup' || BotFire::$user_type=='group') ) {
       return true;
     }
     else {
@@ -151,7 +151,7 @@ class BotFire{
 
   public function isUser()
   {
-    if ( self::$user_type == 'private' ) {
+    if ( BotFire::$user_type == 'private' ) {
       return true;
     }
     else {
@@ -177,12 +177,12 @@ class BotFire{
 
   public static function this()
   {
-    return new BotFireSendMessage(self::$token,self::$chat_id);
+    return new BotFireSendMessage(BotFire::$token,BotFire::$chat_id);
   }
 
   public static function id($chat_id)
   {
-    return new BotFireSendMessage(self::$token,$chat_id);
+    return new BotFireSendMessage(BotFire::$token,$chat_id);
   }
 
   /*
@@ -431,7 +431,7 @@ class BotFireSendMessage
   public function editReplyMarkup($message_id=null)
   {
     if ($message_id==null) {
-      $this->message_id(self::get('message_id'));
+      $this->message_id(BotFire::get('message_id'));
     }
     else {
       $this->message_id($message_id);
@@ -444,7 +444,7 @@ class BotFireSendMessage
   public function editMessage($text)
   {
     $this->params['text']=$text;
-    $this->message_id(self::get('message_id'));
+    $this->message_id(BotFire::get('message_id'));
     $this->method='editMessageText';
 
     return $this;
@@ -453,14 +453,14 @@ class BotFireSendMessage
   public function editCaption($caption)
   {
     $this->params['caption']=$caption;
-    $this->message_id(self::get('message_id'));
+    $this->message_id(BotFire::get('message_id'));
     $this->method='editMessageCaption';
 
     return $this;
   }
 
   public function deleteMessage(){
-    $this->message_id(self::get('message_id'));
+    $this->message_id(BotFire::get('message_id'));
     $this->method='deleteMessage';
     return $this;
   }
@@ -530,7 +530,7 @@ class BotFireSendMessage
 
   public function answerCallback($show_alert=false)
   {
-    $this->callback_query_id(self::get('callback_id'));
+    $this->callback_query_id(BotFire::get('callback_id'));
     $this->params['show_alert']=$show_alert;
     $this->method='answerCallbackQuery';
     return $this;
@@ -734,7 +734,7 @@ class BotFireSendMessage
 
   public function send()
   {
-    $url=self::$server.$this->token.'/'.$this->method;
+    $url=BotFire::$server.$this->token.'/'.$this->method;
     return Request::api($url,$this->params,true);
   }
 
