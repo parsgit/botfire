@@ -101,6 +101,33 @@ class BotFire{
 
   }
 
+  public static function getMessageType(){
+    if (isset(self::$json->message->text)) {
+      return ['type'=>'text','data'=>self::$json->message->text];
+    }
+    elseif (isset(self::$json->message->photo)) {
+      return ['type'=>'photo','data'=>self::$json->message->photo];
+    }
+    elseif (isset(self::$json->message->video)) {
+      return ['type'=>'video','data'=>self::$json->message->video];
+    }
+    elseif (isset(self::$json->message->video_note)) {
+      return ['type'=>'video_note','data'=>self::$json->message->video_note];
+    }
+    elseif (isset(self::$json->message->voice)) {
+      return ['type'=>'voice','data'=>self::$json->message->voice];
+    }
+    elseif (isset(self::$json->message->animation)) {
+      return ['type'=>'animation','data'=>self::$json->message->animation];
+    }
+    elseif (isset(self::$json->message->document)) {
+      return ['type'=>'document','data'=>self::$json->message->document];
+    }
+    else {
+      return ['type'=>false,'data'=>self::$json];
+    }
+  }
+
   /**
   *
   */
