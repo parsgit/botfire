@@ -50,39 +50,40 @@ class BotFire{
 
   public static function initClientInfo()
   {
-    if (isset(BotFire::$json->message)) {
-      BotFire::$isCallback=false;
-      $message=BotFire::$json->message;
+    if (isset(self::$json->message)) {
+      self::$isCallback=false;
+      $message=self::$json->message;
 
-      BotFire::$get['text']=BotFire::checkIsset('text',$message);
-      BotFire::$get['message_id']=$message->message_id;
+      self::$get['text']=self::checkIsset('text',$message);
+      self::$get['caption']=self::checkIsset('caption',$message);
+      self::$get['message_id']=$message->message_id;
 
       if (isset($message->chat)) {
         $chat=$message->chat;
-        BotFire::initChatUserInfo($chat);
+        self::initChatUserInfo($chat);
       }
 
       if ($message->from) {
-        BotFire::$get['user']=$message->from;
+        self::$get['user']=$message->from;
       }
     }
-    else if( isset(BotFire::$json->callback_query) ) {
-      BotFire::$isCallback=true;
-      $query=BotFire::$json->callback_query;
+    else if( isset(self::$json->callback_query) ) {
+      self::$isCallback=true;
+      $query=self::$json->callback_query;
 
-      BotFire::$get['text']=BotFire::checkIsset('text',$query->message);
-      BotFire::$get['data']=$query->data;
-      BotFire::$get['callback_id']=$query->id;
-      BotFire::$get['message_id']=$query->message->message_id;
+      self::$get['text']=self::checkIsset('text',$query->message);
+      self::$get['caption']=self::checkIsset('caption',$query->message);
+      self::$get['data']=$query->data;
+      self::$get['callback_id']=$query->id;
+      self::$get['message_id']=$query->message->message_id;
 
       if (isset($query->message->chat)) {
         $chat=$query->message->chat;
-        BotFire::initChatUserInfo($chat);
+        self::initChatUserInfo($chat);
       }
       if ($query->from) {
-        BotFire::$get['user']=$query->from;
+        self::$get['user']=$query->from;
       }
-
     }
   }
 
@@ -749,7 +750,7 @@ class keyboard
     if ($func!=null) {
       $func($this);
     }
-    
+
     $this->params[]=$this->btns;
     $this->btns=[];
 
