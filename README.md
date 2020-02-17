@@ -88,7 +88,7 @@ $message = bot::getMessageType();
 output text sample :
 ```json
 {
-  "type":"photo",
+  "type":"text",
   "data":"Hello botfire"
 }
 ```
