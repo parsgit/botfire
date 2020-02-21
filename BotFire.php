@@ -123,6 +123,12 @@ class BotFire{
     elseif (isset(BotFire::$json->message->document)) {
       return ['type'=>'document','data'=>BotFire::$json->message->document];
     }
+    elseif (isset(BotFire::$json->message->contact)) {
+      return ['type'=>'contact','data'=>BotFire::$json->message->contact];
+    }
+    elseif (isset(BotFire::$json->message->location)) {
+      return ['type'=>'location','data'=>BotFire::$json->message->location];
+    }
     else {
       return ['type'=>false,'data'=>BotFire::$json];
     }
