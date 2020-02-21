@@ -801,6 +801,18 @@ class keyboard
 
     return $this;
   }
+  
+  public function contact($name)
+  {
+    $this->btns[]=['text'=>$name,'request_contact'=>true];
+    return $this;
+  }
+
+  public function location($name)
+  {
+    $this->btns[]=['text'=>$name,'request_location'=>true];
+    return $this;
+  }
 
   public function get()
   {
