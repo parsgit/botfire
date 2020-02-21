@@ -40,7 +40,7 @@ bot::autoInput();
 
 <br>
 
-download and move BotFire.php to models directory :|
+download and extract BotFire.php to models directory :|
 
 ## data access
 
@@ -80,7 +80,7 @@ $json==bot::$json;
 ### Get message type (new)
 
 ```php
-// support messages [text,photo,video,video_note,voice,animation,document]
+// support messages [text,photo,video,video_note,voice,animation,document,contact,location]
 $message = bot::getMessageType();
 
 ```
