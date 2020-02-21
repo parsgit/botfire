@@ -392,7 +392,13 @@ $k->markup(true)->row(function($col){
   $col->btn('button name');
 });
 
-bot::this()->message('text')->keyboard($k)->send()
+bot::this()->message('text')->keyboard($k)->send();
+```
+
+### remove markup keyboard
+
+```php
+bot::this()->message('text')->removeKeyboard()->send();
 ```
 
 ## Query callback
