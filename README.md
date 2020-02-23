@@ -540,3 +540,43 @@ bot::this()
 $res=bot::this()->getWebhookInfo()->send();
 echo $res;
 ```
+
+<hr>
+
+## Members
+
+### getChat
+
+Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
+
+```php
+$result=bot::this()->getChat()->send();
+// or 
+$result=bot::id(chat_id)->getChat()->send();
+
+echo $result;
+```
+
+### getChatAdministrators
+
+Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
+
+```php
+$result=bot::this()->getChatAdministrators()->send();
+// or 
+$result=bot::id(chat_id)->getChatAdministrators()->send();
+
+echo $result;
+```
+
+### getChatMembersCount
+
+Use this method to get the number of members in a chat. Returns Int on success.
+
+```php
+$result=bot::this()->getChatMembersCount()->send();
+// or 
+$result=bot::id(chat_id)->getChatMembersCount()->send();
+
+echo $result;
+```
