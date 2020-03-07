@@ -14,7 +14,7 @@ bot::this()->message( bot::get('text') )->send();
 <br>
 
 
- - [basic usage](#basic_usage)
+ - [basic usage](#usage)
 
 
 ### Webhook
@@ -22,7 +22,7 @@ bot::this()->message( bot::get('text') )->send();
  - [setWebhook](#setWebhook)
  - [getWebhookInfo](#getWebhookInfo)
 
-### send messages method
+### send method
 
  - [sendMessage](#sendMessage)
  - [sendPhoto](#sendPhoto)
@@ -33,6 +33,13 @@ bot::this()->message( bot::get('text') )->send();
  - [sendVoice](#sendVoice)
  - [sendVideoNote](#sendVideoNote)
  - [sendLocation](#sendLocation)
+ 
+ ### update method
+ 
+  - [editMessageText](#editMessageText)
+  - [editMessageCaption](#editMessageCaption)
+  - [editMessageReplyMarkup](#editMessageReplyMarkup)
+  - [deleteMessage](#deleteMessage)
 
 <br>
 
