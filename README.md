@@ -13,6 +13,8 @@ bot::this()->message( bot::get('text') )->send();
 ```
 <br>
 
+
+
 ## usage
 
 usage in [night framework](https://github.com/parsgit/night)
@@ -30,6 +32,20 @@ use Models\BotFire as bot;
 ```
 <br>
 
+
+### send messages method
+
+ - [sendMessage](#sendMessage)
+ - [sendPhoto](#sendPhoto)
+ - [sendAudio](#sendAudio)
+ - [sendDocument](#sendDocument)
+ - [sendVideo](#sendVideo)
+ - [sendAnimation](#sendAnimation)
+ - [sendVoice](#sendVoice)
+ - [sendVideoNote](#sendVideoNote)
+ - [sendLocation](#sendLocation)
+
+<br>
 ## basic usage
 
 ```php
