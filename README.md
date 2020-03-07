@@ -32,6 +32,12 @@ use Models\BotFire as bot;
 ```
 <br>
 
+ - [basic usage](#basic usage)
+
+### Webhook
+
+ - [setWebhook](#setWebhook)
+ - [getWebhookInfo](#getWebhookInfo)
 
 ### send messages method
 
@@ -46,6 +52,7 @@ use Models\BotFire as bot;
  - [sendLocation](#sendLocation)
 
 <br>
+
 ## basic usage
 
 ```php
