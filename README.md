@@ -49,7 +49,7 @@ bot::this()->message( bot::get('text') )->send();
   
   ### keyboard
   
-   - [inline keyboard](#keyboard)
+   - [inline keyboard](#keyboard-1)
    - [markup keyboard](#markupresize_keyboardone_time_keyboardselective)
 
 <br>
