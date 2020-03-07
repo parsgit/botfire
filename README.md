@@ -14,25 +14,8 @@ bot::this()->message( bot::get('text') )->send();
 <br>
 
 
+ - [basic usage](#basic_usage)
 
-## usage
-
-usage in [night framework](https://github.com/parsgit/night)
-```php
-use Models\BotFire as bot;
-```
-<br>
-
-or usage in other project ( [view sample](https://github.com/parsgit/botfire/wiki/a-basic-example-of-a-robot) )
-
-
-```php
-include_once('BotFire.php');
-use Models\BotFire as bot;
-```
-<br>
-
- - [basic usage](#basic usage)
 
 ### Webhook
 
@@ -52,6 +35,24 @@ use Models\BotFire as bot;
  - [sendLocation](#sendLocation)
 
 <br>
+
+## usage
+
+usage in [night framework](https://github.com/parsgit/night)
+```php
+use Models\BotFire as bot;
+```
+<br>
+
+or usage in other project ( [view sample](https://github.com/parsgit/botfire/wiki/a-basic-example-of-a-robot) )
+
+
+```php
+include_once('BotFire.php');
+use Models\BotFire as bot;
+```
+<br>
+
 
 ## basic usage
 
