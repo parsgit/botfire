@@ -15,7 +15,7 @@ bot::this()->message( bot::get('text') )->send();
 
 
  - [basic usage](#usage)
-
+ - [getMe](#getMe)
 
 ### Webhook
 
@@ -40,6 +40,17 @@ bot::this()->message( bot::get('text') )->send();
   - [editMessageCaption](#editMessageCaption)
   - [editMessageReplyMarkup](#editMessageReplyMarkup)
   - [deleteMessage](#deleteMessage)
+  
+ ### chat member method
+ 
+  - [getChat](#getChat)
+  - [getChatAdministrators](#getChatAdministrators)
+  - [getChatMembersCount](#getChatMembersCount)
+  
+  ### keyboard
+  
+   - [inline keyboard](#keyboard)
+   - [markup keyboard](#markupresize_keyboardone_time_keyboardselective)
 
 <br>
 
