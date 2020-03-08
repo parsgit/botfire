@@ -117,6 +117,9 @@ class BotFire{
     elseif (isset(BotFire::$json->message->voice)) {
       return ['type'=>'voice','data'=>BotFire::$json->message->voice];
     }
+    elseif (isset(BotFire::$json->message->audio)) {
+      return ['type'=>'audio','data'=>BotFire::$json->message->audio];
+    }
     elseif (isset(BotFire::$json->message->animation)) {
       return ['type'=>'animation','data'=>BotFire::$json->message->animation];
     }
@@ -807,7 +810,7 @@ class keyboard
 
     return $this;
   }
-  
+
   public function contact($name)
   {
     $this->btns[]=['text'=>$name,'request_contact'=>true];
