@@ -34,12 +34,14 @@ bot::this()->message( bot::get('text') )->send();
  - [sendVideoNote](#sendVideoNote)
  - [sendLocation](#sendLocation)
  
+ 
  ### update method
  
   - [editMessageText](#editMessageText)
   - [editMessageCaption](#editMessageCaption)
   - [editMessageReplyMarkup](#editMessageReplyMarkup)
   - [deleteMessage](#deleteMessage)
+  
   
  ### chat member method
  
@@ -51,6 +53,7 @@ bot::this()->message( bot::get('text') )->send();
   
    - [inline keyboard](#keyboard-1)
    - [markup keyboard](#markupresize_keyboardone_time_keyboardselective)
+   
 
 <br>
 
