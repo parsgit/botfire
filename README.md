@@ -122,38 +122,6 @@ $json==bot::$json;
 ```
 <hr>
 
-### Get message type (new)
-
-```php
-// support messages [text,photo,video,video_note,voice,animation,document,contact,location]
-$message = bot::getMessageType();
-
-```
-
-output text sample :
-```json
-{
-  "type":"text",
-  "data":"Hello botfire"
-}
-```
-
-output photo sample :
-```json
-{
-  "type": "photo",
-  "data": [
-    {
-      "file_id": "AgA***",
-      "file_unique_id": "AQA***",
-      "file_size": 20303,
-      "width": 320,
-      "height": 296
-    }
-  ]
-}
-```
-<hr>
 
 **check client type**
 
@@ -624,4 +592,38 @@ $result=bot::this()->getChatMembersCount()->send();
 $result=bot::id(chat_id)->getChatMembersCount()->send();
 
 echo $result;
+```
+
+<hr>
+
+### Get message type (new)
+
+```php
+// support messages [text,photo,video,video_note,voice,animation,document,contact,location]
+$message = bot::getMessageType();
+
+```
+
+output text sample :
+```json
+{
+  "type":"text",
+  "data":"Hello botfire"
+}
+```
+
+output photo sample :
+```json
+{
+  "type": "photo",
+  "data": [
+    {
+      "file_id": "AgA***",
+      "file_unique_id": "AQA***",
+      "file_size": 20303,
+      "width": 320,
+      "height": 296
+    }
+  ]
+}
 ```
