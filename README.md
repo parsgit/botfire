@@ -9,7 +9,7 @@ Build a robot with three lines of code :)
 bot::setToken('token-string');
 bot::autoInput();
 
-bot::this()->message( bot::get('text') )->send();
+bot::id(chat_id)->message( 'hello my robot' )->send();
 ```
 <br>
 
