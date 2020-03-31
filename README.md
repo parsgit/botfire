@@ -33,27 +33,28 @@ bot::this()->message( bot::get('text') )->send();
  - [sendVoice](#sendVoice)
  - [sendVideoNote](#sendVideoNote)
  - [sendLocation](#sendLocation)
- 
- 
+ - [sendMediaGroup](#sendMediaGroup)
+
+
  ### update method
- 
+
   - [editMessageText](#editMessageText)
   - [editMessageCaption](#editMessageCaption)
   - [editMessageReplyMarkup](#editMessageReplyMarkup)
   - [deleteMessage](#deleteMessage)
-  
-  
+
+
  ### chat member method
- 
+
   - [getChat](#getChat)
   - [getChatAdministrators](#getChatAdministrators)
   - [getChatMembersCount](#getChatMembersCount)
-  
+
   ### keyboard
-  
+
    - [inline keyboard](#keyboard-1)
    - [markup keyboard](#markupresize_keyboardone_time_keyboardselective)
-   
+
 
 <br>
 
@@ -160,21 +161,10 @@ echo $res;
 
 ### sendMessage
 
+Use this method to send text messages. On success, the sent Message is returned.
+
 ```php
-bot::this()->message('your message text')->send();
-
-bot::this()->message('use parse_mode')->parse_mode('HTML')->send();
-
-// send message to other user chat_id
-bot::id(chat_id)->message('your message text')->send();
-
-// if you want to get json result
-$res=bot::this()->message('your message text')->sendAndGetJson();
-```
-
- use other methods
-```php
-bot::this()
+bot::id(chat_id)
 ->message('text')
 ->parse_mode(string) // HTML or Markdown
 ->disable_notification(boolean)
@@ -183,6 +173,17 @@ bot::this()
 ->disable_web_page_preview(boolean)
 ->send();
 ```
+
+example code
+
+```php
+bot::id(chat_id)->message('your message text')->send();
+
+bot::id(chat_id)->message('use <b> parse_mode <b>')->parse_mode('HTML')->send();
+```
+
+ use other methods
+
 
 ### sendPhoto
 
@@ -356,6 +357,17 @@ action list :
 
 ```php
 bot::this()->chatAction('typing')->send();
+```
+
+### sendMediaGroup
+Use this method to send a group of photos or videos as an album. On success, an array of the sent Messages is returned.
+
+```
+bot::id(chat_id)
+  ->mediaGroup()
+    ->photo(file_id)->caption('caption ...')
+    ->photo(other_file_id)
+  ->send();
 ```
 
 ### keyboard
@@ -564,7 +576,7 @@ Use this method to get up to date information about the chat (current name of th
 
 ```php
 $result=bot::this()->getChat()->send();
-// or 
+// or
 $result=bot::id(chat_id)->getChat()->send();
 
 echo $result;
@@ -576,7 +588,7 @@ Use this method to get a list of administrators in a chat. On success, returns a
 
 ```php
 $result=bot::this()->getChatAdministrators()->send();
-// or 
+// or
 $result=bot::id(chat_id)->getChatAdministrators()->send();
 
 echo $result;
@@ -588,7 +600,7 @@ Use this method to get the number of members in a chat. Returns Int on success.
 
 ```php
 $result=bot::this()->getChatMembersCount()->send();
-// or 
+// or
 $result=bot::id(chat_id)->getChatMembersCount()->send();
 
 echo $result;
