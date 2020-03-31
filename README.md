@@ -123,26 +123,11 @@ bot::id(chat_id)->message('use <b> parse_mode <b>')->parse_mode('HTML')->send();
 
 ### sendPhoto
 
-```php
-// send from url
-bot::this()->photo(image_url_string)->send();
-
-// send by file_id
-bot::this()->photo(file_id_string)->send();
-
-// send file from local server
-$file=bot::loadFile('user.png');
-bot::this()->photo( $file )->send();
-
-// send photo with caption
-bot::this()->photo( $file , 'Caption text for photo' )->send();
-```
-
-use other methods
+Use this method to send photos. On success, the sent Message is returned.
 
 ```php
-bot::this()
-->photo( $file , 'Caption text for photo' )
+bot::id(chat_id)
+->photo( $file , 'Caption' )
 ->parse_mode(string) // HTML or Markdown
 ->disable_notification(boolean)
 ->reply_to(message_id)
@@ -150,18 +135,30 @@ bot::this()
 ->send();
 ```
 
-** Other methods can be used like the photo method **
-<br>
-### sendAudio
-Use this method to send audio our audio must be in the .MP3 or .M4A format.
+example code
+
 ```php
-bot::this()->audio( $file , 'Caption text for audio' )->send();
+// send from url
+bot::id(chat_id)->photo(image_url_string)->send();
+
+// send by file_id
+bot::id(chat_id)->photo(file_id_string)->send();
+
+// send file from local server
+$file=bot::loadFile('user.png');
+bot::id(chat_id)->photo( $file )->send();
+
+// send photo with caption
+bot::id(chat_id)->photo( $file , 'Caption' )->send();
 ```
 
-use other methods
+<br>
+
+### sendAudio
+Use this method to send audio our audio must be in the .MP3 or .M4A format.
 
 ```php
-bot::this()
+bot::id(chat_id)
 ->audio( $file , 'Caption text for audio' )
 ->duration(int_to_seconds) //Duration of the audio in seconds
 ->performer(string)
@@ -174,13 +171,19 @@ bot::this()
 
 ```
 
-### sendDocument
-Use this method to send general files
-```php
-bot::this()->document( $file , 'Caption text for document' )->send();
+example code
 
-// use other methods
-bot::this()
+```php
+bot::id(chat_id)->audio( $file , 'Caption text for audio' )->send();
+```
+
+
+### sendDocument
+
+Use this method to send general files
+
+```php
+bot::id(file_id)
 ->document( $file , 'Caption text for document' )
 ->thumb(loadFile_or_string)
 ->parse_mode(string) // HTML or Markdown
@@ -189,15 +192,17 @@ bot::this()
 ->keyboard(botfire_keyboard)
 ->send();
 
+// example
+bot::id(file_id)->document( file_id , 'Caption text for document' )->send();
 ```
 
 ### sendVideo
-Use this method to send video files,
-```php
-bot::this()->video( $file , 'Caption text for video' )->send();
 
-// use other methods
-bot::this()
+Use this method to send video files
+
+```php
+
+bot::id(file_id)
 ->video( $file , 'Caption text for video' )
 ->duration(int_to_seconds) //Duration of sent video in seconds
 ->width(int) //Animation width
@@ -209,6 +214,10 @@ bot::this()
 ->reply_to(message_id)
 ->keyboard(botfire_keyboard)
 ->send();
+
+// example
+bot::id(file_id)->video( $file , 'Caption text for video' )->send();
+
 ```
 
 
