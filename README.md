@@ -88,70 +88,6 @@ bot::autoInput();
 
 download and extract BotFire.php to models directory :|
 
-## data access
-
-```php
-// Get the current chat_id
-$chat_id=bot::$chat_id;
-
-// Get the current username
-$username=bot::$username;
-
-// Get the current first_name
-$first_name=bot::$first_name;
-
-// Get the current last_name
-$last_name=bot::$last_name;
-
-// first_name + last_name
-$full_name=bot::$full_name;
-
-//Receive text the user has sent
-$text=bot::get('text');
-
-// get message_id
-$message_id=bot::get('message_id');
-
-// get message caption
-$caption=bot::get('caption');
-
-//Receive object of string sent by telegram
-$ob_str=bot::$input;
-
-//Receive json object sent by telegram
-$json==bot::$json;
-```
-<hr>
-
-
-**check client type**
-
-```php
-// If the request is from the supergroup return true else false
-$is_group=bot::isGroup();
-
-// If the request is from the supergroup or group return true else false
-$is_group=bot::isGroup(false);
-
-// If the request is from the private user
-$is_user=bot::isUser();
-```
-
-get request from the supergroup
-
-```php
-// get group id
-$chat_id = bot::$chat_id;
-
-// Get the group title
-$title = bot::$title;
-
-// get sender user
-$user = bot::get('user');
-
-$user_chat_id = $user->id;
-$is_bot = $user->is_bot;
-```
 
 ### getMe
 ```php
@@ -691,6 +627,73 @@ echo $result;
 
 <hr>
 
+
+## data access
+
+```php
+// Get the current chat_id
+$chat_id=bot::$chat_id;
+
+// Get the current username
+$username=bot::$username;
+
+// Get the current first_name
+$first_name=bot::$first_name;
+
+// Get the current last_name
+$last_name=bot::$last_name;
+
+// first_name + last_name
+$full_name=bot::$full_name;
+
+//Receive text the user has sent
+$text=bot::get('text');
+
+// get message_id
+$message_id=bot::get('message_id');
+
+// get message caption
+$caption=bot::get('caption');
+
+//Receive object of string sent by telegram
+$ob_str=bot::$input;
+
+//Receive json object sent by telegram
+$json==bot::$json;
+```
+<hr>
+
+
+**check client type**
+
+```php
+// If the request is from the supergroup return true else false
+$is_group=bot::isGroup();
+
+// If the request is from the supergroup or group return true else false
+$is_group=bot::isGroup(false);
+
+// If the request is from the private user
+$is_user=bot::isUser();
+```
+
+get request from the supergroup
+
+```php
+// get group id
+$chat_id = bot::$chat_id;
+
+// Get the group title
+$title = bot::$title;
+
+// get sender user
+$user = bot::get('user');
+
+$user_chat_id = $user->id;
+$is_bot = $user->is_bot;
+```
+
+## extra
 ### Get message type (new)
 
 ```php
