@@ -362,7 +362,9 @@ bot::this()->chatAction('typing')->send();
 ### sendMediaGroup
 Use this method to send a group of photos or videos as an album. On success, an array of the sent Messages is returned.
 
-```
+InputMediaPhoto
+
+```php
 bot::id(chat_id)
   ->mediaGroup()
     ->photo(file_id)->caption('caption ...')
@@ -370,6 +372,51 @@ bot::id(chat_id)
   ->send();
 ```
 
+InputMediaVideo
+
+```php
+bot::id(chat_id)
+  ->mediaGroup()
+    ->video(file_id)->caption('caption ...')
+    ->video(other_file_id)
+  ->send();
+```
+
+InputMediaAnimation
+
+```php
+bot::id(chat_id)
+  ->mediaGroup()
+    ->animation(file_id)->caption('caption ...')
+    ->nimation(other_file_id)
+  ->send();
+```
+
+InputMediaAudio
+
+```php
+bot::id(chat_id)
+  ->mediaGroup()
+    ->audio(file_id)->caption('caption ...')
+    ->audio(other_file_id)
+  ->send();
+```
+
+InputMediaDocument
+```php
+bot::id(chat_id)
+  ->mediaGroup()
+    ->document(file_id)->caption('caption ...')
+    ->document(other_file_id)
+  ->send();
+
+  // support this methods
+  // ->thumb($thumb)
+  // ->caption($caption)
+  // ->parse_mode('HTML')
+```
+
+<br>
 ### keyboard
 inline keyboard sample :
 
