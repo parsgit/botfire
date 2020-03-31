@@ -362,7 +362,7 @@ bot::this()->chatAction('typing')->send();
 ### sendMediaGroup
 Use this method to send a group of photos or videos as an album. On success, an array of the sent Messages is returned.
 
-InputMediaPhoto
+[InputMediaPhoto](https://core.telegram.org/bots/api#inputmediaphoto)
 
 ```php
 bot::id(chat_id)
@@ -370,9 +370,15 @@ bot::id(chat_id)
     ->photo(file_id)->caption('caption ...')
     ->photo(other_file_id)
   ->send();
+
+
+  // support this methods
+  // ..->photo(file_id)
+  // ->caption($caption)
+  // ->parse_mode('HTML')
 ```
 
-InputMediaVideo
+[InputMediaVideo](https://core.telegram.org/bots/api#inputmediavideo)
 
 ```php
 bot::id(chat_id)
@@ -380,19 +386,38 @@ bot::id(chat_id)
     ->video(file_id)->caption('caption ...')
     ->video(other_file_id)
   ->send();
+
+  // support this methods
+  // ..->video(file_id)
+  // ->thumb($thumb)
+  // ->caption($caption)
+  // ->parse_mode('HTML')
+  // ->width($width)
+  // ->height($height)
+  // ->duration($duration)
+  // ->supports_streaming($supports_streaming)
 ```
 
-InputMediaAnimation
+[InputMediaAnimation](https://core.telegram.org/bots/api#inputmediaanimation)
 
 ```php
 bot::id(chat_id)
   ->mediaGroup()
     ->animation(file_id)->caption('caption ...')
-    ->nimation(other_file_id)
+    ->animation(other_file_id)
   ->send();
+
+  // support this methods
+  // ..->animation(file_id)
+  // ->thumb($thumb)
+  // ->caption($caption)
+  // ->parse_mode('HTML')
+  // ->width($width)
+  // ->height($height)
+  // ->duration($duration)
 ```
 
-InputMediaAudio
+[InputMediaAudio](https://core.telegram.org/bots/api#inputmediaaudio)
 
 ```php
 bot::id(chat_id)
@@ -400,9 +425,19 @@ bot::id(chat_id)
     ->audio(file_id)->caption('caption ...')
     ->audio(other_file_id)
   ->send();
+
+  // support this methods
+  // ..->audio(file_id)
+  // ->thumb($thumb)
+  // ->caption($caption)
+  // ->parse_mode('HTML')
+  // ->duration($duration)
+  // ->performer($performer)
+  // ->title($title)
 ```
 
-InputMediaDocument
+[InputMediaDocument](https://core.telegram.org/bots/api#inputmediadocument)
+
 ```php
 bot::id(chat_id)
   ->mediaGroup()
@@ -411,6 +446,7 @@ bot::id(chat_id)
   ->send();
 
   // support this methods
+  // ..->document(file_id)
   // ->thumb($thumb)
   // ->caption($caption)
   // ->parse_mode('HTML')
