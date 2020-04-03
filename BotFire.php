@@ -208,8 +208,8 @@ class BotFire{
 */
 class BotFireSendMessage
 {
-  private $token,$method;
-  private $params=[];
+  public $token,$method;
+  public $params=[];
 
   function __construct($token,$chat_id)
   {
