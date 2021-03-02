@@ -1,5 +1,8 @@
 #  BotFire
 
+> :warning: See the new version of this library [here](https://github.com/botfire/botfire)
+
+
 
 <br>
 
